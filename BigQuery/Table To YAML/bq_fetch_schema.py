@@ -31,9 +31,3 @@ def get_schema_details(projectId, datasetId, tableId):
     }
     return json_for_yaml
 
-
-if __name__ == "__main__":
-    table_json = get_schema_details("prj-gousenaib-dlak-res01", "consumption_layer_sensitive", "bv_merchant_pii_information")
-    with open(r'C:\Users\mohammedt\Desktop\test.yaml', 'w+') as stream:
-        yaml.safe_dump(table_json, stream, allow_unicode=True,
-                       default_flow_style=False)
