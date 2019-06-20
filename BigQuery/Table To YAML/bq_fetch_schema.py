@@ -18,7 +18,10 @@ def get_schema_details(projectId, datasetId, tableId):
     if resource_type == 'VIEW':
         schema_details.pop('schema')
 
-    schema_details['labels']['project'] = schema_details['tableReference']['projectId'] = 'PROJECT_ID_TOKEN'
+    if 'labels' in schema_details:
+        schema_details['labels']['project'] = 'PROJECT_ID_TOKEN'
+
+    schema_details['tableReference']['projectId'] = 'PROJECT_ID_TOKEN'
     table_name = schema_details['tableReference']['tableId']
 
     yaml_resource_type = 'bigquery.v2.table'
