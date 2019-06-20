@@ -14,7 +14,10 @@ def get_schema_details(projectId, datasetId, tableId):
     schema_details = schema_info
     schema_details['datasetId'] = schema_details['tableReference'].pop('datasetId')
 
-    schema_details.pop('type')
+    resource_type = schema_details.pop('type')
+    if resource_type == 'VIEW':
+        schema_details.pop('schema')
+
     schema_details['labels']['project'] = schema_details['tableReference']['projectId'] = 'PROJECT_ID_TOKEN'
     table_name = schema_details['tableReference']['tableId']
 
@@ -30,4 +33,3 @@ def get_schema_details(projectId, datasetId, tableId):
         ]
     }
     return json_for_yaml
-
